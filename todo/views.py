@@ -65,7 +65,7 @@ class TaskView(viewsets.ViewSet):
     def get_all_task_state(self, name_state=None):
         try:
             name_state = name_state.lower()
-            # status = Status.objects.get(name=name_state)
+            status = Status.objects.get(name=name_state)
             tasks = Task.objects.filter(status=status)
             serializer = TaskSerializer(tasks, many=True)
             Response(serializer.data)
