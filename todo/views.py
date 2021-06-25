@@ -53,23 +53,23 @@ class TaskView(viewsets.ViewSet):
         serializer.save()
         return Response(serializer.data)
 
-    def get_all_task_user(self, request, id_user):
+    def all_task_user(self, request, id_user):
         try:
             user = User.objects.get(pk=id_user)
             tasks = Task.objects.filter(user=user.id)
             serializer = TaskSerializer(tasks, many=True)
             print(serializer.data)
-            Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except User.DoesNotExist:
             return Response({'message': 'this user not found'},status=status.HTTP_404_NOT_FOUND)    
 
-    def get_all_task_state(self, request, name_state):
+    def all_task_state(self, request, name_state):
         try:
             name_state = name_state.lower()
             state = Status.objects.get(name=name_state)
             tasks = Task.objects.filter(state=state.id)
             serializer = TaskSerializer(tasks, many=True)
-            Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except Status.DoesNotExist:
             return Response({'message': 'this state not found'},status=status.HTTP_404_NOT_FOUND)
 

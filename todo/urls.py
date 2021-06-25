@@ -18,9 +18,9 @@ urlpatterns = [
         })),
 
     path('user/<int:id_user>', views.TaskView.as_view({
-            'get': 'get_all_task_user',
+            'get': 'all_task_user',
         })),
     path('status/<str:name_state>',views.TaskView.as_view({
-            'get': 'get_all_task_state',
+            'get': 'all_task_state',
         })),
 ]
