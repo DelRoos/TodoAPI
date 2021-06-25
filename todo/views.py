@@ -56,7 +56,7 @@ class TaskView(viewsets.ViewSet):
     def get_all_task_user(self, request, id_user=None):
         try:
             user = User.objects.get(pk=id_user)
-            tasks = Task.objects.filter(user=user)
+            tasks = Task.objects.filter(user=user.id)
             serializer = TaskSerializer(tasks, many=True)
             Response(serializer.data)
         except User.DoesNotExist:
@@ -66,7 +66,7 @@ class TaskView(viewsets.ViewSet):
         try:
             name_state = name_state.lower()
             status = Status.objects.get(name=name_state)
-            tasks = Task.objects.filter(state=status)
+            tasks = Task.objects.filter(state=status.id)
             serializer = TaskSerializer(tasks, many=True)
             Response(serializer.data)
         except Status.DoesNotExist:
