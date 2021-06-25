@@ -66,7 +66,7 @@ class TaskView(viewsets.ViewSet):
         try:
             name_state = name_state.lower()
             status = Status.objects.get(name=name_state)
-            tasks = Task.objects.filter(status=status)
+            tasks = Task.objects.filter(state=status)
             serializer = TaskSerializer(tasks, many=True)
             Response(serializer.data)
         except Status.DoesNotExist:
