@@ -8,8 +8,15 @@ class Status(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __init__(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         self.name = self.name.lower()
+        return super(Status, self).save(*args, **kwargs)
+
+    # def __init__(self, *args, **kwargs):
+    #     self.name = self.name.lower()
+    
+    # def __str__(self):
+    #     return self.id
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='task_user')
@@ -18,9 +25,3 @@ class Task(models.Model):
     state = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='task_state')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-# {
-#     "user": 1,
-#     "title": "laver les habit",
-#     "body": "laver les vetements de mes parent et les miens"
-# }

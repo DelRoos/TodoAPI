@@ -70,13 +70,13 @@ class TaskView(viewsets.ViewSet):
             serializer = TaskSerializer(tasks, many=True)
             Response(serializer.data)
         except Status.DoesNotExist:
-            return Response({'message': 'this user not found'},status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': 'this state not found'},status=status.HTTP_404_NOT_FOUND)
 
     def get_permissions(self):
         """
         Instantiates and returns the list of permissions that this view requires.
         """
-        if self.action == 'list':
+        if self.action != '':
             permission_classes = [permissions.IsAuthenticated]
         else:
             permission_classes = [permissions.IsAuthenticated]
