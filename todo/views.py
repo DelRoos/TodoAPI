@@ -10,13 +10,13 @@ from rest_framework import permissions
 
 # Create your views here.
 
-class StatusList(generics.ListCreateAPIView):
+class StatusList(generics.ListAPIView):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
 
-class StatusAct(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Status.objects.all()
-    serializer_class = StatusSerializer
+# class StatusAct(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Status.objects.all()
+#     serializer_class = StatusSerializer
 
 class TaskView(viewsets.ViewSet):
     def list(self, request):

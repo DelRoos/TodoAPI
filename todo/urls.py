@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
 
     path('status', views.StatusList.as_view()),
-    path('status/<int:pk>',views.StatusAct.as_view()),
+    # path('status/<int:pk>',views.StatusAct.as_view()),
     path('status/<str:name_state>',views.TaskView.as_view({
             'get': 'get_all_task_state',
         })),
