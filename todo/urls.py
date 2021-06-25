@@ -23,4 +23,8 @@ urlpatterns = [
     path('status/<str:name_state>',views.TaskView.as_view({
             'get': 'all_task_state',
         })),
+    
+    path('number/task/status/<str:name_state>',views.TaskView.as_view({
+            'get': 'number_task_state',
+        })),
 ]
